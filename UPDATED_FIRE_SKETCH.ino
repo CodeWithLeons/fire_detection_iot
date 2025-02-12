@@ -3,12 +3,12 @@
 #include "DHT.h"
 
 // Wi-Fi credentials
-const char* ssid = "LLEONS A11S";         
-const char* password = "NEWYEAR2025"; 
+const char* ssid = "Wi-Fi";         
+const char* password = "Password"; 
 
 // Phone numbers and API keys
-String phone_numbers[] = {"2348111789339", "2349027954105", "2348024235740", "2348142746383"};
-String api_keys[] = {"3787375", "2244974", "2697445", "9736196"};
+String phone_numbers[] = {"234...", "234...", "234...", "234..."}; //Phone numbers should be in international form without the plus (+) sign
+String api_keys[] = {"api_key1", "api_key2", "api_key3", "api_key4"}; //The API keys should be arranged in the same order as the phone numbers
 const int num_phone_numbers = sizeof(phone_numbers) / sizeof(phone_numbers[0]);
 
 // Sensor thresholds
@@ -23,7 +23,7 @@ const int dhtPin = 32;
 const int wifiConnectedLED = 2;
 const int fireDetectedLED = 4;
 const int buzzerPin = 5;
-const int powerIndicatorLED = 15; // Power indicator LED
+const int powerIndicatorLED = 15; 
 
 // DHT sensor setup
 #define DHTTYPE DHT22
@@ -42,7 +42,7 @@ void setup() {
     pinMode(wifiConnectedLED, OUTPUT);
     pinMode(fireDetectedLED, OUTPUT);
     pinMode(buzzerPin, OUTPUT);
-    pinMode(powerIndicatorLED, OUTPUT); // Set power indicator LED as output
+    pinMode(powerIndicatorLED, OUTPUT); 
     
     dht.begin(); // Initialize DHT22 sensor
 
@@ -108,7 +108,7 @@ void sendWarningMessage() {
         
         for (int i = 0; i < num_phone_numbers; i++) {
             String apiURL = "https://api.callmebot.com/whatsapp.php?phone=" + phone_numbers[i] 
-            + "&text=Warning:+Fire+Detected!+Evacuate+Immediately!&apikey=" + api_keys[i];
+            + "&text=Warning:+Fire+Detected!+Evacuate+Immediately!&apikey=" + api_keys[i]; //The warning message can be edited to best suit the case
             http.begin(apiURL);
             int httpResponseCode = http.GET();
             
